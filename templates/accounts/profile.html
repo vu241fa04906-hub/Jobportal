@@ -1,0 +1,3 @@
+{% extends 'base.html' %}
+{% block title %}Profile - HireWave{% endblock %}
+{% block content %}<section class="page-hero compact-hero accounts-hero-bg"><div class="container"><h1>My Profile</h1><p>Manage your role, contact details, and hiring identity.</p></div></section><section class="section-pad"><div class="container"><div class="profile-card mx-auto profile-wide"><span class="avatar">{{ user.username|slice:":1"|upper }}</span><h2>{{ user.username }}</h2><p>{{ user.email }}</p><div class="skill-list"><span>{{ profile.role|title }}</span><span>{{ profile.phone|default:"Phone not added" }}</span></div><a class="btn btn-primary" href="{% url 'edit_profile' %}">Edit Profile</a></div></div></section>{% endblock %}

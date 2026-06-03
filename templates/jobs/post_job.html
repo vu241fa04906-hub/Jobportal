@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block title %}{{ title }} - HireWave{% endblock %}
+{% block content %}
+<section class="page-hero compact-hero employers-hero-bg">
+    <div class="container">
+        <h1>{{ title }}</h1>
+        <p>Define the role requirements and details to attract top talent.</p>
+    </div>
+</section>
+<section class="section-pad">
+    <div class="container">
+        <form class="detail-panel mx-auto profile-wide" method="post">
+            {% csrf_token %}
+            {% if form.non_field_errors %}
+                <div class="alert alert-danger">{{ form.non_field_errors }}</div>
+            {% endif %}
+            <div class="row g-3">
+                {% for field in form %}
+                    {% if not field.is_hidden %}
+                        <div class="col-md-{% if field.name == 'description' or field.name == 'requirements' %}12{% else %}6{% endif %}">
+                            <label class="form-label" for="{{ field.id_for_label }}">{{ field.label }}</label>
+                            {{ field }}
+                            {% for error in field.errors %}
+                                <div class="invalid-feedback d-block">{{ error }}</div>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ field }}
+                    {% endif %}
+                {% endfor %}
+            </div>
+            <div class="mt-4">
+                <button class="btn btn-primary" type="submit">Submit</button>
+                <a class="btn btn-secondary ms-2" href="{% url 'employer_dashboard' %}">Cancel</a>
+            </div>
+        </form>
+    </div>
+</section>
+{% endblock %}

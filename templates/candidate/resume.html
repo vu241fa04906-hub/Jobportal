@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% block title %}Candidate Profile - HireWave{% endblock %}
+{% block content %}
+{% if candidate %}
+<section class="page-hero compact-hero candidates-hero-bg">
+    <div class="container">
+        <div class="avatar resume-avatar mb-3">{% if candidate.user %}{{ candidate.user.username|slice:":1"|upper }}{% else %}{{ candidate.name|slice:":1"|upper }}{% endif %}</div>
+        <h1>{% if candidate.user %}{{ candidate.user.get_full_name|default:candidate.user.username }}{% else %}{{ candidate.name }}{% endif %}</h1>
+        <p>{{ candidate.role|default:'Candidate' }} · {{ candidate.experience|default:'Experience not added yet' }} · {{ candidate.location|default:'Open to opportunities' }}</p>
+    </div>
+</section>
+
+<section class="section-pad">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-lg-8">
+                <article class="detail-panel" data-aos="fade-up">
+                    <h2>Candidate Information</h2>
+                    <p>{{ candidate.summary|default:candidate.experience|default:'This candidate profile is ready for more details.' }}</p>
+
+                    <h3>Skills</h3>
+                    <div class="skill-list justify-content-start">
+                        {% for skill in skill_items %}
+                            <span>{{ skill }}</span>
+                        {% empty %}
+                            <span>Skills not added yet</span>
+                        {% endfor %}
+                    </div>
+
+                    <h3>Education</h3>
+                    <p>{{ candidate.education|default:'Education details not added yet.' }}</p>
+
+                    <h3>Experience</h3>
+                    <p>{{ candidate.experience|default:'Experience details not added yet.' }}</p>
+                </article>
+            </div>
+            <aside class="col-lg-4">
+                <div class="detail-panel sticky-detail" data-aos="fade-up" data-aos-delay="80">
+                    <h3>Profile Summary</h3>
+                    <div class="summary-row"><span>Email</span><strong>{% if candidate.user %}{{ candidate.user.email|default:'Not added' }}{% else %}{{ candidate.email }}{% endif %}</strong></div>
+                    <div class="summary-row"><span>Phone</span><strong>{{ candidate.phone|default:'Not added' }}</strong></div>
+                    <div class="summary-row"><span>Location</span><strong>{{ candidate.location|default:'India' }}</strong></div>
+                    {% if candidate.resume %}
+                        <a class="btn btn-primary w-100 mt-3" href="{{ candidate.resume.url }}">View Resume</a>
+                    {% endif %}
+                    <a class="btn btn-outline-primary w-100 mt-2" href="{% url 'candidates' %}">Back to Candidates</a>
+                </div>
+            </aside>
+        </div>
+    </div>
+</section>
+{% else %}
+<section class="page-hero compact-hero candidates-hero-bg"><div class="container"><h1>Candidate Not Found</h1><p>The requested candidate could not be found.</p></div></section>
+<section class="section-pad"><div class="container"><a class="btn btn-primary" href="{% url 'candidates' %}">Back to Candidates</a></div></section>
+{% endif %}
+{% endblock %}

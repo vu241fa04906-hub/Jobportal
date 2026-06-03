@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %}Categories - HireWave{% endblock %}
+{% block content %}
+<section class="page-hero compact-hero"><div class="container"><h1>Job Categories</h1><p>Explore roles by skill family and career track.</p></div></section>
+<section class="section-pad"><div class="container"><div class="row g-4">
+{% for category in categories %}
+<div class="col-6 col-lg-3" data-aos="zoom-in">
+    <a class="category-card d-block" href="{% if category.pk %}{% url 'category_detail' category.pk %}{% else %}{% url 'category_detail' category.slug %}{% endif %}">
+        <i class="fa-solid {{ category.icon|default:'fa-layer-group' }}"></i>
+        <h3>{{ category.name }}</h3>
+        <p>{{ category.description|default:'Browse open roles and career paths.' }}</p>
+    </a>
+</div>
+{% endfor %}
+</div></div></section>
+{% endblock %}

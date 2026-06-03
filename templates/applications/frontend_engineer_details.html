@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% block title %}Frontend Engineer Details | HireWave{% endblock %}
+{% block content %}
+<section class="page-hero compact-hero applications-hero-bg">
+    <div class="container">
+        <span class="status-badge review mb-3">In Review</span>
+        <h1>Frontend Engineer</h1>
+        <p>LinkedWorks · Bengaluru · Applied May 18, 2026</p>
+    </div>
+</section>
+
+<section class="section-pad">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-lg-8">
+                <article class="detail-panel" data-aos="fade-up">
+                    <h2>About This Role</h2>
+                    <p>LinkedWorks is hiring a Frontend Engineer to create fast, accessible, responsive job portal experiences using modern HTML, CSS, Bootstrap, and JavaScript.</p>
+
+                    <h3>Key Responsibilities</h3>
+                    <ul class="detail-list">
+                        <li>Build polished, mobile-first web pages from UI requirements.</li>
+                        <li>Create reusable components for cards, forms, dashboards, and navigation.</li>
+                        <li>Improve accessibility, performance, layout stability, and browser compatibility.</li>
+                        <li>Connect frontend interactions with Django template routes and form flows.</li>
+                        <li>Collaborate with designers and backend developers to ship production-ready features.</li>
+                    </ul>
+
+                    <h3>Required Skills</h3>
+                    <div class="skill-list justify-content-start">
+                        <span>HTML5</span>
+                        <span>CSS3</span>
+                        <span>Bootstrap</span>
+                        <span>JavaScript</span>
+                        <span>Responsive UI</span>
+                        <span>Accessibility</span>
+                    </div>
+
+                    <h3>Application Status</h3>
+                    <p>Your application is currently in review. The hiring team is checking your UI portfolio, responsive layout skills, and frontend problem-solving ability.</p>
+                </article>
+            </div>
+            <aside class="col-lg-4">
+                <div class="detail-panel sticky-detail" data-aos="fade-up" data-aos-delay="80">
+                    <h2>Job Summary</h2>
+                    <div class="summary-row"><span>Company</span><strong>LinkedWorks</strong></div>
+                    <div class="summary-row"><span>Experience</span><strong>1-3 years</strong></div>
+                    <div class="summary-row"><span>Salary</span><strong>Rs. 6-11 LPA</strong></div>
+                    <div class="summary-row"><span>Job Type</span><strong>Full time</strong></div>
+                    <div class="summary-row"><span>Mode</span><strong>On-site / Hybrid</strong></div>
+                    <a class="btn btn-primary w-100 mt-3" href="{% url 'applications' %}">Back to Applications</a>
+                </div>
+            </aside>
+        </div>
+    </div>
+</section>
+{% endblock %}

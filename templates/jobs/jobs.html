@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block title %}Jobs - HireWave{% endblock %}
+{% block content %}
+<section class="page-hero compact-hero jobs-hero-bg"><div class="container"><h1>Find Jobs</h1><p>Search premium roles by keyword, company, location, and work style.</p></div></section>
+<section class="section-pad">
+    <div class="container">
+        <form class="job-search-card mb-4" action="{% url 'search_results' %}">
+            <div class="search-field"><i class="fa-solid fa-magnifying-glass"></i><input class="form-control" name="q" value="{{ query }}" placeholder="Role or company"></div>
+            <div class="search-field"><i class="fa-solid fa-location-dot"></i><input class="form-control" name="location" value="{{ location }}" placeholder="Location"></div>
+            <button class="btn btn-primary" type="submit">Filter</button>
+        </form>
+        <div class="row g-4">
+            <aside class="col-lg-3">
+                <div class="detail-panel sticky-detail">
+                    <h3>Filter UI</h3>
+                    <select class="form-select mb-3" data-job-filter><option>All job types</option><option>Full Time</option><option>Remote</option><option>Internship</option></select>
+                    <input class="form-range" type="range" min="1" max="30" value="12">
+                    <p class="text-muted small mb-0">Interactive frontend filters are ready for backend expansion.</p>
+                </div>
+            </aside>
+            <div class="col-lg-9">
+                <div class="row g-4">
+                    {% for job in jobs %}
+                    <div class="col-md-6">
+                        <article class="job-card">
+                            <div class="d-flex justify-content-between gap-3">
+                                <span class="company-logo">{% if job.employer %}{{ job.employer.company_name|slice:":1" }}{% else %}{{ job.company|slice:":1" }}{% endif %}</span>
+                                <span class="status-badge review">{{ job.job_type }}</span>
+                            </div>
+                            <h3>{{ job.title }}</h3>
+                            <p>{% if job.employer %}{{ job.employer.company_name }}{% else %}{{ job.company }}{% endif %} · {{ job.location }}</p>
+                            <p>{{ job.description|truncatewords:18 }}</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <strong>{{ job.salary }}</strong>
+                                <a class="btn btn-outline-primary" href="{% url 'job_detail' job.id %}">Details</a>
+                            </div>
+                        </article>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

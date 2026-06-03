@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% block title %}Employer Details - HireWave{% endblock %}
+{% block content %}
+{% if employer %}
+<section class="page-hero compact-hero employers-hero-bg">
+    <div class="container">
+        <div class="company-logo resume-avatar mb-3">{{ employer.company_name|slice:":1" }}</div>
+        <h1>{{ employer.company_name }}</h1>
+        <p>{{ employer.industry|default:'Employer Partner' }} · {{ employer.location|default:'Hiring across India' }} · {{ employer.open_roles|default:'Open roles available' }}</p>
+    </div>
+</section>
+
+<section class="section-pad">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-lg-8">
+                <article class="detail-panel" data-aos="fade-up">
+                    <h2>Company Information</h2>
+                    <p>{{ employer.company_description|default:'This employer is hiring candidates through HireWave.' }}</p>
+
+                    <h3>Open Roles</h3>
+                    <div class="row g-3">
+                        {% for job in jobs %}
+                            <div class="col-md-6">
+                                <a class="job-card d-block" href="{% url 'job_detail' job.id %}">
+                                    <h3>{{ job.title }}</h3>
+                                    <p>{{ job.location }} · {{ job.job_type }}</p>
+                                    <strong>{{ job.salary|default:'Salary not disclosed' }}</strong>
+                                </a>
+                            </div>
+                        {% empty %}
+                            <div class="col-12">
+                                <p class="text-muted mb-0">No jobs are connected to this employer yet. Add jobs from admin to show them here.</p>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </article>
+            </div>
+            <aside class="col-lg-4">
+                <div class="detail-panel sticky-detail" data-aos="fade-up" data-aos-delay="80">
+                    <h3>Employer Summary</h3>
+                    <div class="summary-row"><span>Company</span><strong>{{ employer.company_name }}</strong></div>
+                    <div class="summary-row"><span>Industry</span><strong>{{ employer.industry|default:'General' }}</strong></div>
+                    <div class="summary-row"><span>Location</span><strong>{{ employer.location|default:'India' }}</strong></div>
+                    <div class="summary-row"><span>Jobs</span><strong>{{ jobs|length }}</strong></div>
+                    {% if employer.website %}
+                        <a class="btn btn-primary w-100 mt-3" href="{{ employer.website }}" target="_blank" rel="noopener">Visit Website</a>
+                    {% endif %}
+                    <a class="btn btn-outline-primary w-100 mt-2" href="{% url 'employers' %}">Back to Employers</a>
+                </div>
+            </aside>
+        </div>
+    </div>
+</section>
+{% else %}
+<section class="page-hero compact-hero employers-hero-bg"><div class="container"><h1>Employer Not Found</h1><p>The requested employer could not be found.</p></div></section>
+<section class="section-pad"><div class="container"><a class="btn btn-primary" href="{% url 'employers' %}">Back to Employers</a></div></section>
+{% endif %}
+{% endblock %}

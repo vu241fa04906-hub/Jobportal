@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block title %}Delete Job - HireWave{% endblock %}
+{% block content %}
+<section class="page-hero compact-hero employers-hero-bg">
+    <div class="container">
+        <h1>Delete Job</h1>
+        <p>Confirm deletion of the selected job post.</p>
+    </div>
+</section>
+<section class="section-pad">
+    <div class="container text-center">
+        <div class="detail-panel mx-auto profile-wide">
+            <h3>Are you sure you want to delete "{{ job.title }}"?</h3>
+            <p class="text-danger my-4">Warning: This action is permanent and cannot be undone. All applications associated with this job will also be deleted.</p>
+            <form method="post">
+                {% csrf_token %}
+                <button class="btn btn-danger px-4" type="submit">Confirm Delete</button>
+                <a class="btn btn-secondary px-4 ms-2" href="{% url 'employer_dashboard' %}">Cancel</a>
+            </form>
+        </div>
+    </div>
+</section>
+{% endblock %}

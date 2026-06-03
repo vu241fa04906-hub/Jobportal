@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% block title %}Data Analyst Details | HireWave{% endblock %}
+{% block content %}
+<section class="page-hero compact-hero applications-hero-bg">
+    <div class="container">
+        <span class="status-badge pending mb-3">Assessment</span>
+        <h1>Data Analyst</h1>
+        <p>Insightly · Remote · Applied May 24, 2026</p>
+    </div>
+</section>
+
+<section class="section-pad">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-lg-8">
+                <article class="detail-panel" data-aos="fade-up">
+                    <h2>About This Role</h2>
+                    <p>Insightly needs a Data Analyst to turn product, hiring, and customer data into dashboards, reports, and clear business recommendations.</p>
+
+                    <h3>Key Responsibilities</h3>
+                    <ul class="detail-list">
+                        <li>Analyze application funnels, candidate activity, and employer hiring trends.</li>
+                        <li>Create dashboards and recurring reports for operations and leadership teams.</li>
+                        <li>Write SQL queries, clean datasets, and validate data quality.</li>
+                        <li>Present insights with charts, concise summaries, and recommended actions.</li>
+                        <li>Work with product and engineering teams to define useful metrics.</li>
+                    </ul>
+
+                    <h3>Required Skills</h3>
+                    <div class="skill-list justify-content-start">
+                        <span>SQL</span>
+                        <span>Excel</span>
+                        <span>Python</span>
+                        <span>Power BI</span>
+                        <span>Statistics</span>
+                        <span>Dashboards</span>
+                    </div>
+
+                    <h3>Application Status</h3>
+                    <p>Your application has moved to the assessment stage. The next step is a short analytics task covering SQL, chart interpretation, and insight writing.</p>
+                </article>
+            </div>
+            <aside class="col-lg-4">
+                <div class="detail-panel sticky-detail" data-aos="fade-up" data-aos-delay="80">
+                    <h2>Job Summary</h2>
+                    <div class="summary-row"><span>Company</span><strong>Insightly</strong></div>
+                    <div class="summary-row"><span>Experience</span><strong>0-2 years</strong></div>
+                    <div class="summary-row"><span>Salary</span><strong>Rs. 5-9 LPA</strong></div>
+                    <div class="summary-row"><span>Job Type</span><strong>Full time</strong></div>
+                    <div class="summary-row"><span>Mode</span><strong>Remote</strong></div>
+                    <a class="btn btn-primary w-100 mt-3" href="{% url 'applications' %}">Back to Applications</a>
+                </div>
+            </aside>
+        </div>
+    </div>
+</section>
+{% endblock %}

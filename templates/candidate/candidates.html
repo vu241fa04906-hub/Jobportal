@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block title %}Candidates - HireWave{% endblock %}
+{% block content %}
+<section class="page-hero compact-hero candidates-hero-bg"><div class="container"><h1>Candidate Network</h1><p>Discover high-signal profiles ready for modern teams.</p></div></section>
+<section class="section-pad"><div class="container"><div class="row g-4">
+{% for candidate in candidates %}
+<div class="col-md-6 col-lg-4" data-aos="fade-up">
+    <article class="profile-card">
+        <span class="avatar">{% if candidate.user %}{{ candidate.user.username|slice:":1"|upper }}{% else %}{{ candidate.name|slice:":1"|upper }}{% endif %}</span>
+        <h2>{% if candidate.user %}{{ candidate.user.username }}{% else %}{{ candidate.name }}{% endif %}</h2>
+        <p>{{ candidate.experience }}</p>
+        <div class="skill-list"><span>{{ candidate.skills }}</span></div>
+        <a class="btn btn-outline-primary" href="{% if candidate.pk %}{% url 'candidate_detail' candidate.pk %}{% else %}{% url 'candidate_demo_detail' candidate.slug %}{% endif %}">View Profile</a>
+    </article>
+</div>
+{% endfor %}
+</div></div></section>
+{% endblock %}

@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block title %}Pricing - HireWave{% endblock %}
+{% block content %}
+<section class="page-hero compact-hero pricing-hero-bg"><div class="container"><h1>Pricing</h1><p>Simple plans for candidates, startups, and growing hiring teams.</p></div></section>
+<section class="section-pad"><div class="container"><div class="row g-4">
+<div class="col-md-4"><div class="pricing-card"><h3>Candidate</h3><strong>Free</strong><p>Search jobs and track applications.</p><a class="btn btn-outline-primary w-100" href="{% url 'signup' %}">Start</a></div></div>
+<div class="col-md-4"><div class="pricing-card featured"><h3>Employer</h3><strong>₹999/mo</strong><p>Post jobs and manage applicants.</p><a class="btn btn-primary w-100" href="{% url 'signup' %}">Post Jobs</a></div></div>
+<div class="col-md-4"><div class="pricing-card"><h3>Business</h3><strong>Custom</strong><p>Advanced hiring workflows and support.</p><a class="btn btn-outline-primary w-100" href="{% url 'contact' %}">Contact</a></div></div>
+</div></div></section>
+{% endblock %}

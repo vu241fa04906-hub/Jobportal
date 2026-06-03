@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block title %}Candidate Dashboard - HireWave{% endblock %}
+{% block content %}
+<section class="page-hero compact-hero candidates-hero-bg"><div class="container"><h1>Candidate Dashboard</h1><p>Track applications, profile completeness, and recommended jobs.</p></div></section>
+<section class="section-pad"><div class="container"><div class="row g-4">
+<div class="col-lg-4"><div class="profile-card"><span class="avatar">{{ user.username|slice:":1"|upper }}</span><h2>{{ user.username }}</h2><p>{{ candidate.skills|default:"Add your skills to unlock better matches." }}</p><a class="btn btn-primary" href="{% url 'edit_candidate_profile' %}">Edit Profile</a></div></div>
+<div class="col-lg-8"><div class="detail-panel"><h2>Application Tracker</h2>{% if applications %}{% for application in applications %}<div class="summary-row"><span>{{ application.job.title }}</span><strong>{{ application.status|title }}</strong></div>{% endfor %}{% else %}<p class="text-muted">No applications yet. Start from the jobs listing page.</p>{% endif %}</div></div>
+</div></div></section>
+{% endblock %}

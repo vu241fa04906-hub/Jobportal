@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block title %}Contact Candidate | HireWave{% endblock %}
+{% block content %}
+{% if candidate %}
+<section class="page-hero compact-hero candidates-hero-bg">
+    <div class="container">
+        <div class="avatar resume-avatar mb-3">{{ candidate.initials }}</div>
+        <h1>Contact {{ candidate.name }}</h1>
+        <p>{{ candidate.role }} · {{ candidate.location }} · {{ candidate.experience }}</p>
+    </div>
+</section>
+
+<section class="section-pad">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-lg-7">
+                <form class="detail-panel needs-validation" method="post" novalidate data-aos="fade-up">
+                    {% csrf_token %}
+                    {% if message_sent %}
+                        <div class="alert alert-success"><i class="fa-solid fa-check-circle"></i> Message sent successfully. The candidate contact process has started.</div>
+                    {% endif %}
+                    <h2>Send Message</h2>
+                    <label class="form-label" for="senderName">Your Name</label>
+                    <input id="senderName" class="form-control mb-3" name="sender_name" type="text" placeholder="Enter your name" required>
+                    <label class="form-label" for="senderEmail">Your Email</label>
+                    <input id="senderEmail" class="form-control mb-3" name="sender_email" type="email" placeholder="you@example.com" required>
+                    <label class="form-label" for="message">Message</label>
+                    <textarea id="message" class="form-control mb-3" name="message" rows="5" placeholder="Write interview details, job role, or next steps" required></textarea>
+                    <button class="btn btn-primary w-100" type="submit">Send Message</button>
+                </form>
+            </div>
+            <aside class="col-lg-5">
+                <div class="detail-panel sticky-detail" data-aos="fade-up" data-aos-delay="80">
+                    <h2>Candidate Info</h2>
+                    <div class="summary-row"><span>Email</span><strong>{{ candidate.email }}</strong></div>
+                    <div class="summary-row"><span>Phone</span><strong>{{ candidate.phone }}</strong></div>
+                    <div class="summary-row"><span>Skills</span><strong>{% for skill in candidate.skill_list %}{{ skill }}{% if not forloop.last %}, {% endif %}{% endfor %}</strong></div>
+                    <a class="btn btn-outline-primary w-100 mt-3" href="{% url 'candidate_resume' candidate_slug %}">View Resume</a>
+                    <a class="btn btn-primary w-100 mt-2" href="{% url 'candidates' %}">Back to Candidates</a>
+                </div>
+            </aside>
+        </div>
+    </div>
+</section>
+{% else %}
+<section class="page-hero compact-hero candidates-hero-bg"><div class="container"><h1>Candidate Not Found</h1><p>The requested contact profile could not be found.</p></div></section>
+<section class="section-pad"><div class="container"><a class="btn btn-primary" href="{% url 'candidates' %}">Back to Candidates</a></div></section>
+{% endif %}
+{% endblock %}

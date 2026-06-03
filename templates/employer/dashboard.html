@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block title %}Employer Dashboard - HireWave{% endblock %}
+{% block content %}
+<section class="page-hero compact-hero employers-hero-bg"><div class="container"><h1>Employer Dashboard</h1><p>Post jobs, review applicants, and measure hiring progress.</p></div></section>
+<section class="section-pad"><div class="container"><div class="row g-4">
+<div class="col-lg-4">
+    <div class="profile-card">
+        <span class="company-logo">{{ employer.company_name|default:user.username|slice:":1" }}</span>
+        <h2>{{ employer.company_name|default:"Create employer profile" }}</h2>
+        <p>{{ employer.company_description|default:"Add company details from the profile flow." }}</p>
+        <div class="d-grid gap-2">
+            <a class="btn btn-primary" href="{% url 'edit_employer_profile' %}">Edit Profile</a>
+            <a class="btn btn-outline-primary" href="{% url 'post_job' %}">Post a New Job</a>
+        </div>
+    </div>
+</div>
+<div class="col-lg-8">
+    <div class="detail-panel">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2 class="mb-0">Active Job Posts</h2>
+            <a class="btn btn-sm btn-primary" href="{% url 'post_job' %}"><i class="fa-solid fa-plus me-1"></i>Post Job</a>
+        </div>
+        {% if jobs %}
+            {% for job in jobs %}
+                <div class="summary-row d-flex justify-content-between align-items-center py-2 border-bottom">
+                    <div>
+                        <h5 class="mb-1"><a href="{% url 'job_detail' job.pk %}" class="text-decoration-none text-dark">{{ job.title }}</a></h5>
+                        <span class="text-muted"><i class="fa-solid fa-location-dot me-1"></i>{{ job.location }}</span> · 
+                        <span class="text-muted"><i class="fa-solid fa-briefcase me-1"></i>{{ job.get_job_type_display }}</span>
+                    </div>
+                    <div class="btn-group">
+                        <a class="btn btn-sm btn-outline-secondary" href="{% url 'edit_job' job.pk %}"><i class="fa-solid fa-pen"></i></a>
+                        <a class="btn btn-sm btn-outline-danger" href="{% url 'delete_job' job.pk %}"><i class="fa-solid fa-trash"></i></a>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p class="text-muted">No jobs posted yet. Click 'Post Job' to create your first listing.</p>
+        {% endif %}
+    </div>
+</div>
+</div></div></section>
+{% endblock %}

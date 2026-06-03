@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% block title %}Django Developer Details | HireWave{% endblock %}
+{% block content %}
+<section class="page-hero compact-hero applications-hero-bg">
+    <div class="container">
+        <span class="status-badge success mb-3">Shortlisted</span>
+        <h1>Django Developer</h1>
+        <p>CloudNest · Bengaluru / Remote · Applied May 21, 2026</p>
+    </div>
+</section>
+
+<section class="section-pad">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-lg-8">
+                <article class="detail-panel" data-aos="fade-up">
+                    <h2>About This Role</h2>
+                    <p>CloudNest is looking for a Django Developer to build reliable web applications, REST APIs, admin dashboards, and secure backend workflows for a growing cloud SaaS platform.</p>
+
+                    <h3>Key Responsibilities</h3>
+                    <ul class="detail-list">
+                        <li>Develop scalable Django views, models, forms, and reusable templates.</li>
+                        <li>Build and maintain REST APIs for candidate, employer, and application features.</li>
+                        <li>Work with PostgreSQL or SQLite during development and optimize database queries.</li>
+                        <li>Implement authentication, authorization, validation, and secure form handling.</li>
+                        <li>Collaborate with frontend developers to connect Bootstrap UI with Django routes.</li>
+                    </ul>
+
+                    <h3>Required Skills</h3>
+                    <div class="skill-list justify-content-start">
+                        <span>Python</span>
+                        <span>Django</span>
+                        <span>Django ORM</span>
+                        <span>REST APIs</span>
+                        <span>HTML/CSS</span>
+                        <span>Git</span>
+                    </div>
+
+                    <h3>Application Status</h3>
+                    <p>Your profile has been shortlisted. The next step is a technical screening focused on Django fundamentals, URL routing, templates, models, and basic API design.</p>
+                </article>
+            </div>
+            <aside class="col-lg-4">
+                <div class="detail-panel sticky-detail" data-aos="fade-up" data-aos-delay="80">
+                    <h2>Job Summary</h2>
+                    <div class="summary-row"><span>Company</span><strong>CloudNest</strong></div>
+                    <div class="summary-row"><span>Experience</span><strong>2-4 years</strong></div>
+                    <div class="summary-row"><span>Salary</span><strong>Rs. 8-14 LPA</strong></div>
+                    <div class="summary-row"><span>Job Type</span><strong>Full time</strong></div>
+                    <div class="summary-row"><span>Mode</span><strong>Hybrid / Remote</strong></div>
+                    <a class="btn btn-primary w-100 mt-3" href="{% url 'applications' %}">Back to Applications</a>
+                </div>
+            </aside>
+        </div>
+    </div>
+</section>
+{% endblock %}

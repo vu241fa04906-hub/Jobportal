@@ -1,0 +1,139 @@
+{% extends 'base.html' %}
+{% block title %}HireWave - Premium Job Portal{% endblock %}
+{% block content %}
+<section class="hero-section home-hero-bg">
+    <div class="container">
+        <div class="row align-items-center g-5">
+            <div class="col-lg-7" data-aos="fade-up">
+                <span class="eyebrow"><i class="fa-solid fa-sparkles"></i> Premium hiring experience</span>
+                <h1>Find your next <span class="gradient-text typing-text" data-typing="dream role,remote job,internship,tech career">dream role</span></h1>
+                <p class="hero-copy">Search curated jobs, track every application, and connect with trusted employers through one polished Django platform.</p>
+                <form class="job-search-card needs-validation" action="{% url 'search_results' %}" novalidate>
+                    <div class="search-field">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <input class="form-control" name="q" placeholder="Job title, keyword, company" required>
+                    </div>
+                    <div class="search-field">
+                        <i class="fa-solid fa-location-dot"></i>
+                        <input class="form-control" name="location" placeholder="City or remote">
+                    </div>
+                    <button class="btn btn-primary" type="submit">Search Jobs</button>
+                </form>
+                <div class="d-flex flex-wrap gap-2 mt-3">
+                    <a class="btn btn-primary" href="{% url 'jobs' %}"><i class="fa-solid fa-briefcase me-2"></i>Explore Jobs</a>
+                    <a class="btn btn-outline-primary" href="{% url 'employers' %}">Hire Talent</a>
+                </div>
+            </div>
+            <div class="col-lg-5" data-aos="fade-left">
+                <div class="hero-panel glass-card">
+                    <div class="job-alert-card">
+                        <div>
+                            <strong>New match</strong>
+                            <p class="mb-0 text-muted">Django Developer at CloudNova</p>
+                        </div>
+                        <span class="status-badge success">92%</span>
+                    </div>
+                    <div class="mini-metric"><strong data-counter="12000">0</strong><span>active opportunities</span></div>
+                    <div class="candidate-strip"><span>UX</span><span>DJ</span><span>AI</span><span>HR</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section-pad">
+    <div class="container">
+        <div class="section-heading" data-aos="fade-up"><span>Featured Jobs</span><h2>Fresh roles from top teams</h2></div>
+        <div class="row g-4">
+            {% for job in featured_jobs %}
+            <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="{{ forloop.counter0 }}00">
+                <article class="job-card">
+                    <span class="company-logo">{{ job.company|slice:":1" }}</span>
+                    <h3>{{ job.title }}</h3>
+                    <p>{{ job.company }} · {{ job.location }}</p>
+                    <div class="d-flex flex-wrap gap-2 mb-3">
+                        <span class="badge-soft">{{ job.job_type }}</span>
+                        <span class="badge-soft">{{ job.salary }}</span>
+                    </div>
+                    <a class="btn btn-outline-primary w-100" href="{% url 'job_detail' job.id %}">View Details</a>
+                </article>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<section class="section-pad muted-section">
+    <div class="container">
+        <div class="section-heading" data-aos="fade-up"><span>Categories</span><h2>Browse by career path</h2></div>
+        <div class="row g-4">
+            <div class="col-6 col-lg-3" data-aos="zoom-in"><a class="category-card d-block" href="{% url 'categories' %}"><i class="fa-solid fa-code"></i><h3>Development</h3><p>4,200 jobs</p></a></div>
+            <div class="col-6 col-lg-3" data-aos="zoom-in"><a class="category-card d-block" href="{% url 'categories' %}"><i class="fa-solid fa-pen-nib"></i><h3>Design</h3><p>1,500 jobs</p></a></div>
+            <div class="col-6 col-lg-3" data-aos="zoom-in"><a class="category-card d-block" href="{% url 'categories' %}"><i class="fa-solid fa-chart-line"></i><h3>Marketing</h3><p>2,100 jobs</p></a></div>
+            <div class="col-6 col-lg-3" data-aos="zoom-in"><a class="category-card d-block" href="{% url 'categories' %}"><i class="fa-solid fa-database"></i><h3>Data</h3><p>980 jobs</p></a></div>
+        </div>
+    </div>
+</section>
+
+<section class="section-pad">
+    <div class="container">
+        <div class="section-heading"><span>Trusted Companies</span><h2>Hiring teams already on HireWave</h2></div>
+        <div class="company-grid" data-aos="fade-up">
+            <span>CloudNova</span><span>PixelWorks</span><span>InsightHub</span><span>FinEdge</span><span>TalentOS</span>
+        </div>
+    </div>
+</section>
+
+<section class="section-pad muted-section">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-6 col-lg-3"><div class="stat-card"><strong data-counter="12000">0</strong><span>Jobs</span></div></div>
+            <div class="col-6 col-lg-3"><div class="stat-card"><strong data-counter="8500">0</strong><span>Candidates</span></div></div>
+            <div class="col-6 col-lg-3"><div class="stat-card"><strong data-counter="760">0</strong><span>Employers</span></div></div>
+            <div class="col-6 col-lg-3"><div class="stat-card"><strong data-counter="98">0</strong><span>Success Rate</span></div></div>
+        </div>
+    </div>
+</section>
+
+<section class="section-pad">
+    <div class="container">
+        <div class="row g-4 align-items-center">
+            <div class="col-lg-5" data-aos="fade-right"><div class="image-tile"></div></div>
+            <div class="col-lg-7" data-aos="fade-left">
+                <span class="eyebrow">Why Choose Us</span>
+                <h2 class="display-6 fw-bold">A faster, cleaner way to move from search to offer</h2>
+                <div class="row g-3 mt-3">
+                    <div class="col-md-6"><div class="tracking-card"><i class="fa-solid fa-filter"></i><h3>Smart filtering</h3><p>Find high-fit jobs with focused location, category, and type filters.</p></div></div>
+                    <div class="col-md-6"><div class="tracking-card"><i class="fa-solid fa-chart-simple"></i><h3>Application tracking</h3><p>Dashboards keep candidate and employer workflows visible.</p></div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section-pad muted-section">
+    <div class="container">
+        <div id="testimonialCarousel" class="carousel slide testimonial-slider" data-bs-ride="carousel" data-aos="fade-up">
+            <div class="carousel-inner">
+                <div class="carousel-item active"><blockquote>"HireWave made our job search feel organized, premium, and fast."</blockquote><p>Priya, Product Designer</p></div>
+                <div class="carousel-item"><blockquote>"The employer dashboard is exactly what small hiring teams need."</blockquote><p>Rohan, Founder</p></div>
+                <div class="carousel-item"><blockquote>"Clean UI, quick search, and no clutter. That matters."</blockquote><p>Ananya, Django Developer</p></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="newsletter-band">
+    <div class="container">
+        <div class="row align-items-center g-4">
+            <div class="col-lg-7"><h2>Get weekly job alerts</h2><p class="mb-0">Fresh openings, hiring tips, and interview-ready opportunities.</p></div>
+            <div class="col-lg-5">
+                <form class="newsletter-form needs-validation" novalidate>
+                    <input class="form-control" type="email" placeholder="Email address" required>
+                    <button class="btn" type="submit">Join</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

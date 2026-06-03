@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block title %}{{ job.title }} - HireWave{% endblock %}
+{% block content %}
+<section class="page-hero compact-hero jobs-hero-bg">
+    <div class="container">
+        <h1>{{ job.title }}</h1>
+        <p>{{ job.location }} - {{ job.salary|default:"Salary not disclosed" }}</p>
+    </div>
+</section>
+<section class="section-pad">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-lg-8">
+                <article class="detail-panel">
+                    <h2>Job Description</h2>
+                    <p>{{ job.description }}</p>
+                    <h3>Requirements</h3>
+                    {% if job.requirements %}
+                        <p>{{ job.requirements }}</p>
+                    {% else %}
+                        <ul class="detail-list">
+                            <li>Strong communication and ownership.</li>
+                            <li>Relevant technical skills for the role.</li>
+                            <li>Ability to work in a professional team environment.</li>
+                        </ul>
+                    {% endif %}
+                </article>
+            </div>
+            <aside class="col-lg-4">
+                <div class="detail-panel sticky-detail">
+                    <h3>Job Summary</h3>
+                    <div class="summary-row"><span>Company</span><strong>{% if job.employer %}{{ job.employer.company_name }}{% else %}{{ job.company|default:"HireWave" }}{% endif %}</strong></div>
+                    <div class="summary-row"><span>Type</span><strong>{{ job.get_job_type_display|default:job.job_type }}</strong></div>
+                    <div class="summary-row"><span>Experience</span><strong>{{ job.get_experience_level_display|default:job.experience_level }}</strong></div>
+                    <div class="summary-row"><span>Status</span><strong>{{ job.status|title|default:"Open" }}</strong></div>
+                    <div class="summary-row"><span>Location</span><strong>{{ job.location }}</strong></div>
+                    <div class="summary-row"><span>Salary</span><strong>{{ job.salary|default:"Not disclosed" }}</strong></div>
+                    {% if can_apply %}
+                        <a class="btn btn-primary w-100 mt-3" href="{% url 'apply_job' job.id %}">Apply Now</a>
+                    {% else %}
+                        <a class="btn btn-outline-primary w-100 mt-3" href="{% url 'jobs' %}">View Live Jobs</a>
+                    {% endif %}
+                </div>
+            </aside>
+        </div>
+    </div>
+</section>
+{% endblock %}

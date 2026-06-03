@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}Employers - HireWave{% endblock %}
+{% block content %}
+<section class="page-hero compact-hero employers-hero-bg"><div class="container"><h1>Top Employers</h1><p>Explore companies hiring across technology, design, business, and operations.</p></div></section>
+<section class="section-pad"><div class="container"><div class="row g-4">
+{% for employer in employers %}
+<div class="col-md-6 col-lg-4" data-aos="fade-up">
+    <article class="company-card">
+        <span class="company-logo">{{ employer.company_name|slice:":1" }}</span>
+        <h2>{{ employer.company_name }}</h2>
+        <p>{{ employer.company_description }}</p>
+        <a class="btn btn-outline-primary" href="{% if employer.pk %}{% url 'employer_detail' employer.pk %}{% else %}{% url 'employer_demo_detail' employer.slug %}{% endif %}">View Details</a>
+    </article>
+</div>
+{% endfor %}
+</div></div></section>
+{% endblock %}
